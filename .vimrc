@@ -12,6 +12,14 @@ set incsearch           " Show search results as you type
 set ignorecase          " Case insensitive search
 set background=dark     " Assume the background colour is a dark color, change the color pallet accordingly
 
+" Bindings
+let mapleader = ","
+:nnoremap <C-j> <C-e>
+:nnoremap <C-k> <C-y>
+:nmap <F2> :TagbarToggle<CR>
+:nmap <F3> zf%
+:nmap <F6> :setlocal spell!<CR>
+:noremap <Home> ^
 
 " Vundle
 set nocompatible
@@ -21,6 +29,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 filetype plugin indent on
@@ -38,3 +47,7 @@ let g:ctrlp_lazy_update = 200                                           " Search
 let g:ycm_confirm_extra_conf=0                                          " Don't ask whether to load .ycm_extra_conf.py
 "let g:ycm_key_invoke_completion = '<C-N>'
 let g:ycm_key_list_stop_completion = ['<C-y>', '<Enter>']
+
+" Tagbar
+let g:tagbar_autofocus=1                                                " Automatically focus tagbar when it is opened
+let g:tagbar_sort=0                                                     " Don't sort the tags by name
