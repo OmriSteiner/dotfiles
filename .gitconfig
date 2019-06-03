@@ -1,0 +1,5 @@
+[user]
+	email = omri@insoundz.com
+	name = Omri Steiner
+[core]
+	excludesfile = /home/steiner/.globalgitignore
