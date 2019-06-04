@@ -21,6 +21,9 @@ let mapleader = ","
 :nmap <F6> :setlocal spell!<CR>
 :noremap <Home> ^
 
+:map <ESC>Od <C-Left>
+:map <ESC>Oc <C-Right>
+
 " Vundle
 set nocompatible
 filetype off
