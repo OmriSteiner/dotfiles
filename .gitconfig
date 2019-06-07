@@ -3,3 +3,5 @@
 	name = Omri Steiner
 [core]
 	excludesfile = /home/steiner/.globalgitignore
+[diff]
+	tool = meld

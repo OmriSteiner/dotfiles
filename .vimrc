@@ -20,9 +20,12 @@ let mapleader = ","
 :nmap <F3> zf%
 :nmap <F6> :setlocal spell!<CR>
 :noremap <Home> ^
+:map <C-b> :NERDTreeToggle<CR>
 
 :map <ESC>Od <C-Left>
 :map <ESC>Oc <C-Right>
+:imap <ESC>Od <C-Left>
+:imap <ESC>Oc <C-Right>
 
 " Vundle
 set nocompatible
@@ -33,6 +36,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'ctrlp.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 
 call vundle#end()
 filetype plugin indent on
