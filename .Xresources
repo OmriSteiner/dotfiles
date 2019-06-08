@@ -1,6 +1,13 @@
+#define c00 #2c2c2c
+#define c07 #dfdfdf
+#define c12 #1b3e59
+
 URxvt.font: xft:Source Code Pro:size=16
 URxvt.scrollBar: False
-URxvt.background: #2c2c2c
+URxvt.background: c00
 URxvt.foreground: #ffffff
 URxvt.iso14755: False
 URxvt.iso14755_52: False
+*.color0: c00
+*.color7: c07
+*.color12: c12
