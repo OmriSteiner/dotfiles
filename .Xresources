@@ -1,4 +1,4 @@
-URxvt.font: xft:Source Code Pro:size=14
+URxvt.font: xft:Source Code Pro:size=16
 URxvt.scrollBar: False
 URxvt.background: #2c2c2c
 URxvt.foreground: #ffffff
