@@ -11,6 +11,7 @@ set hlsearch            " Highlight search results
 set incsearch           " Show search results as you type
 set ignorecase          " Case insensitive search
 set background=dark     " Assume the background colour is a dark color, change the color pallet accordingly
+set diffopt=filler,vertical " Open diff in vertical files (for :Gdiff)
 
 " Bindings
 let mapleader = ","
@@ -38,6 +39,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 filetype plugin indent on
