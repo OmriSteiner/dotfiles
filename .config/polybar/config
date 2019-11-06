@@ -80,6 +80,18 @@ tray-padding = 2
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[bar/laptop]
+inherit = bar/generic
+monitor = eDP-1
+
+[bar/left]
+inherit = bar/generic
+monitor = DP-1
+
+[bar/right]
+inherit = bar/generic
+monitor = DP-3
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
@@ -335,33 +347,7 @@ type = internal/battery
 battery = BAT0
 adapter = AC
 full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
-
-format-discharging = <animation-discharging> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-;format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+label-charging = %percentage%%
 
 [module/temperature]
 type = internal/temperature

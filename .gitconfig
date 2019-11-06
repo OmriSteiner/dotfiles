@@ -3,5 +3,6 @@
 	name = Omri Steiner
 [core]
 	excludesfile = /home/steiner/.globalgitignore
+	editor = vim
 [diff]
 	tool = meld

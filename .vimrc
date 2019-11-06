@@ -12,6 +12,8 @@ set incsearch           " Show search results as you type
 set ignorecase          " Case insensitive search
 set background=dark     " Assume the background colour is a dark color, change the color pallet accordingly
 set diffopt=filler,vertical " Open diff in vertical files (for :Gdiff)
+set listchars=tab:>-    " Show tabs as >---
+set list                " Enable the previous option
 
 " Bindings
 let mapleader = ","
@@ -22,6 +24,8 @@ let mapleader = ","
 :nmap <F6> :setlocal spell!<CR>
 :noremap <Home> ^
 :map <C-b> :NERDTreeToggle<CR>
+:map <F12> :YcmCompleter GoTo<CR>
+:map <C-F12> :YcmCompleter GoToDefinition<CR>
 
 :map <ESC>Od <C-Left>
 :map <ESC>Oc <C-Right>
@@ -40,6 +44,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
 
 call vundle#end()
 filetype plugin indent on
@@ -51,6 +56,7 @@ let g:ctrlp_working_path_mode = 'a'                                     " Open i
 " let g:ctrlp_custom_ignore = {}    " TODO: this
 let g:ctrlp_extensions = ['tag']                                        " Enable ctags search
 let g:ctrlp_lazy_update = 200                                           " Search only after typing has stopped
+let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
 " YouCompleteMe
 "let g:ycm_autoclose_preview_window_after_insertion=1                   " Close the preview window after we leave insert mode.
@@ -61,3 +67,10 @@ let g:ycm_key_list_stop_completion = ['<C-y>', '<Enter>']
 " Tagbar
 let g:tagbar_autofocus=1                                                " Automatically focus tagbar when it is opened
 let g:tagbar_sort=0                                                     " Don't sort the tags by name
+
+" Airline
+let g:airline_section_a = ''
+let g:airline_section_y = ''
+let g:airline_section_z = ''
+let g:airline_section_error = ''
+let g:airline_section_warning = ''
