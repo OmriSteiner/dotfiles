@@ -4,5 +4,6 @@
 [core]
 	excludesfile = /home/steiner/.globalgitignore
 	editor = vim
+	hooksPath = /home/steiner/.githooks
 [diff]
 	tool = meld
