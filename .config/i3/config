@@ -70,6 +70,8 @@ bindsym $mod+Shift+Right move right
 # Move to another workspace
 bindsym $mod+Mod1+Left move workspace to output left
 bindsym $mod+Mod1+Right move workspace to output right
+bindsym $mod+Mod1+Up move workspace to output up
+bindsym $mod+Mod1+Down move workspace to output down
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -182,6 +184,11 @@ client.focused      $myblue $myblue #ffffff #2e9ef4 $myblue
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pactl list sinks short | grep RUNNING | cut -f 1) -2db
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pactl list sinks short | grep RUNNING | cut -f 1) +2db
 bindsym XF86AudioMute exec pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle
+
+# Bind media keys
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Run polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

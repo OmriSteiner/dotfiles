@@ -14,6 +14,7 @@ set background=dark     " Assume the background colour is a dark color, change t
 set diffopt=filler,vertical " Open diff in vertical files (for :Gdiff)
 set listchars=tab:>-    " Show tabs as >---
 set list                " Enable the previous option
+set showcmd             " Show command as it is being typed
 
 " Bindings
 let mapleader = ","
@@ -26,6 +27,7 @@ let mapleader = ","
 :map <C-b> :NERDTreeToggle<CR>
 :map <F12> :YcmCompleter GoTo<CR>
 :map <C-F12> :YcmCompleter GoToDefinition<CR>
+:map <leader>t :YcmCompleter GetType<CR>
 
 :map <ESC>Od <C-Left>
 :map <ESC>Oc <C-Right>
@@ -45,6 +47,8 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-scripts/Conque-GDB'
+Plugin 'grailbio/bazel-compilation-database'
 
 call vundle#end()
 filetype plugin indent on
