@@ -188,7 +188,9 @@ bindsym XF86AudioMute exec pactl set-sink-mute alsa_output.pci-0000_00_1f.3.anal
 # Bind media keys
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
+bindsym F10 exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+bindsym F9 exec playerctl previous
 
 # Run polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
