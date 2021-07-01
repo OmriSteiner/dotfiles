@@ -6,6 +6,9 @@
 
 ### Variables
 #
+# My Blue color
+set $myblue #1b3e59
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 # Home row direction keys, like vim
@@ -14,11 +17,12 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term x-terminal-emulator
+#set $term ECORE_EVAS_ENGINE=wayland_egl ELM_ENGINE=wayland_egl terminology -B
+set $term urxvt
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $menu dmenu_path | dmenu -l 15 -nb \#1b3e59 | xargs swaymsg exec --
 
 ### Output configuration
 #
@@ -30,6 +34,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+output DP-1 resolution 1920x1080 position 1920,0
+output DP-3 resolution 1920x1080 position 3840,0
 
 ### Idle configuration
 #
@@ -58,6 +65,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+input type:keyboard {
+    xkb_layout us,il
+    xkb_options grp:alt_shift_toggle
+}
 
 ### Key bindings
 #
@@ -135,6 +146,12 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+Shift+0 move container to workspace 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # Move workspace to another output
+    bindsym $mod+Mod1+Left move workspace to output left
+    bindsym $mod+Mod1+Right move workspace to output right
+    bindsym $mod+Mod1+Up move workspace to output up
+    bindsym $mod+Mod1+Down move workspace to output down
 #
 # Layout stuff:
 #
@@ -202,11 +219,12 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    # status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    swaybar_command waybar
 
     colors {
         statusline #ffffff
@@ -215,4 +233,30 @@ bar {
     }
 }
 
+hide_edge_borders both
+
+# Colors
+# class             border  backgr  text    indicator child_border
+client.focused      $myblue $myblue #ffffff #2e9ef4 $myblue
+
+# Volume Control (I used xev + xmodmap -pke to see how the keys are called)
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pactl list sinks short | grep RUNNING | cut -f 1) -2db
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pactl list sinks short | grep RUNNING | cut -f 1) +2db
+bindsym XF86AudioMute exec pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle
+
+# Bind media keys
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym F10 exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym F9 exec playerctl previous
+
+# Print screen
+bindsym Print exec grim -g "$(slurp -d)" - | wl-copy
+bindsym Shift+Print exec grim - | wl-copy
+
 include /etc/sway/config.d/*
+
+set $laptop eDP-1
+bindswitch lid:on output $laptop disable
+bindswitch lid:off output $laptop enable
