@@ -15,6 +15,10 @@ set diffopt=filler,vertical " Open diff in vertical files (for :Gdiff)
 set listchars=tab:>-    " Show tabs as >---
 set list                " Enable the previous option
 set showcmd             " Show command as it is being typed
+set updatetime=1000     " How often will the swap file be written to disk, ALSO - how long until YCM hover documentation shows up
+set colorcolumn=80      " color the 80th column, as a ruler.
+set scrolloff=5         " Scroll before you reach the end of the screen.
+highlight ColorColumn ctermbg=darkgrey
 
 " Bindings
 let mapleader = ","
@@ -28,6 +32,7 @@ let mapleader = ","
 :map <F12> :YcmCompleter GoTo<CR>
 :map <C-F12> :YcmCompleter GoToDefinition<CR>
 :map <leader>t :YcmCompleter GetType<CR>
+:map <leader>f :YcmCompleter FixIt<CR>
 
 :map <ESC>Od <C-Left>
 :map <ESC>Oc <C-Right>
@@ -47,7 +52,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
-Plugin 'vim-scripts/Conque-GDB'
+" Plugin 'vim-scripts/Conque-GDB'
 Plugin 'grailbio/bazel-compilation-database'
 
 call vundle#end()
@@ -59,14 +64,16 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:30,results:30'   " This i
 let g:ctrlp_working_path_mode = 'a'                                     " Open in the current file's directory, unless it is a subdirectory of the cwd.
 " let g:ctrlp_custom_ignore = {}    " TODO: this
 let g:ctrlp_extensions = ['tag']                                        " Enable ctags search
-let g:ctrlp_lazy_update = 200                                           " Search only after typing has stopped
-let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+let g:ctrlp_lazy_update = 50                                           " Search only after typing has stopped
+" let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+let g:ctrlp_user_command = 'git ls-files $(cd %s && git rev-parse --show-toplevel)'
 
 " YouCompleteMe
 "let g:ycm_autoclose_preview_window_after_insertion=1                   " Close the preview window after we leave insert mode.
 let g:ycm_confirm_extra_conf=0                                          " Don't ask whether to load .ycm_extra_conf.py
 "let g:ycm_key_invoke_completion = '<C-N>'
 let g:ycm_key_list_stop_completion = ['<C-y>', '<Enter>']
+let g:ycm_seed_identifiers_with_syntax = 1
 
 " Tagbar
 let g:tagbar_autofocus=1                                                " Automatically focus tagbar when it is opened
