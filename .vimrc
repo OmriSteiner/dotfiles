@@ -54,6 +54,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 " Plugin 'vim-scripts/Conque-GDB'
 Plugin 'grailbio/bazel-compilation-database'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'tommcdo/vim-exchange'
 
 call vundle#end()
 filetype plugin indent on
@@ -65,8 +67,15 @@ let g:ctrlp_working_path_mode = 'a'                                     " Open i
 " let g:ctrlp_custom_ignore = {}    " TODO: this
 let g:ctrlp_extensions = ['tag']                                        " Enable ctags search
 let g:ctrlp_lazy_update = 50                                           " Search only after typing has stopped
+" let g:ctrlp_user_command = 'git ls-files $(git -C %s rev-parse --show-toplevel) || ag -l --nocolor -g "" %s'
+let g:ctrlp_user_command = {
+    \ 'types': {
+      \ 1: ['.git', 'git ls-files $(git -C %s rev-parse --show-toplevel)'],
+    \ },
+    \ 'fallback': 'ag -l --nocolor -g "" %s'
+    \ }
+" let g:ctrlp_user_command = 'git ls-files $(git -C %s rev-parse --show-toplevel)'
 " let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-let g:ctrlp_user_command = 'git ls-files $(cd %s && git rev-parse --show-toplevel)'
 
 " YouCompleteMe
 "let g:ycm_autoclose_preview_window_after_insertion=1                   " Close the preview window after we leave insert mode.
