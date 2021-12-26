@@ -18,6 +18,7 @@ set showcmd             " Show command as it is being typed
 set updatetime=1000     " How often will the swap file be written to disk, ALSO - how long until YCM hover documentation shows up
 set colorcolumn=80      " color the 80th column, as a ruler.
 set scrolloff=5         " Scroll before you reach the end of the screen.
+set directory=~/.vim/swapfiles// " Change the directory for swapfiles
 highlight ColorColumn ctermbg=darkgrey
 
 " Bindings

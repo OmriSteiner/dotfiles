@@ -6,4 +6,6 @@
 	editor = vim
 	hooksPath = /home/steiner/.githooks
 [diff]
-	tool = meld
+	tool = vimdiff
+[branch]
+	autoSetupMerge = always
