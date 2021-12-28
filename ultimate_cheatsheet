@@ -1,0 +1,76 @@
+############# Ubuntu ############# 
+# Enable core dump
+echo "core.%e.%p" | sudo tee /proc/sys/kernel/core_pattern
+ulimit -c unlimited
+
+
+############## GDB ############## 
+### Sharedlibraries
+# Load symbols of loaded modules.
+sharedlibrary
+
+# List modules loaded
+info sharedlibrary
+
+# Break on shared library load event
+set stop-on-solib-events 1
+
+### Threading
+# Turn off thread printing
+set print thread-events off
+
+# Run command on all threads
+thread apply all <command>
+
+# change to thread
+thread <threadid>
+
+### Visibility
+# Demangle C++ function names
+set print asm-demangle on
+
+# Intel assembly syntax
+set disassembly-flavor intel
+
+############## Docker ##############
+# Manage docker as a non-root user
+sudo groupadd docker
+sudo usermod -aG docker $USER
+# need to logout and login after this
+
+############### SSH ###############
+# Tunnel:
+ssh -N inz@192.168.10.55 -L :1234:172.30.110.5:22
+
+# Jump:
+ssh user@172.30.110.3 -J inz@192.168.10.44
+scp -o ProxyJump=inz@192.168.10.44 src user@172.30.110.3:dst
+
+############### Vim ###############
+# To scroll simultaneously on multiple windows, use this on every window:
+:set scrollbind
+
+# Open diff for CR (requires vim-fugitive)
+:Git diffsplit -y <commit>
+use dp/do to send/receive from other side
+use ]c [c to go to next/prev diff
+
+############## PEP8 ##############
+# PEP8 for math (i.e, only the good stuff, but doesn't enforce whitespace around operators).
+autopep8 -i --select E231,E203,E202,E303,E302,E251,W293,W291,E201,E128,E117,E126,E222,E221 <file.py>
+
+########## Tensorboard ###########
+tensorboard --logdir /tmp/tensorboard --port=6006 --bind_all --load_fast=false
+
+########## File Permissions ###########
+# Get file permissions as octal value
+stat -c %a <filepath>
+
+############ Markdown #############
+# Display github markdown:
+pip3 install grip
+grip myfile.md
+
+############## JSON ###############
+# Auto-format json
+cat my.json | python3 -m json.tool
