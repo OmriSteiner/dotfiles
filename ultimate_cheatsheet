@@ -74,3 +74,8 @@ grip myfile.md
 ############## JSON ###############
 # Auto-format json
 cat my.json | python3 -m json.tool
+
+############### adb ###############
+# Run adb server on 0.0.0.0
+adb kill-server
+adb -a nodaemon server start
