@@ -40,7 +40,9 @@ sudo usermod -aG docker $USER
 
 ############### SSH ###############
 # Tunnel:
+# For reverse tunnel use -R instead of -L
 ssh -N inz@192.168.10.55 -L :1234:172.30.110.5:22
+
 
 # Jump:
 ssh user@172.30.110.3 -J inz@192.168.10.44
