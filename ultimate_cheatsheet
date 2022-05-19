@@ -79,3 +79,7 @@ cat my.json | python3 -m json.tool
 # Run adb server on 0.0.0.0
 adb kill-server
 adb -a nodaemon server start
+
+############### Git ###############
+# Apply patch from specific commit
+git format-patch -1 --stdout <commit> | git apply -
