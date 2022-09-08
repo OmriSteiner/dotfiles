@@ -85,3 +85,6 @@ adb -a nodaemon server start
 ############### Git ###############
 # Apply patch from specific commit
 git format-patch -1 --stdout <commit> | git apply -
+
+# Rebase backwards in history
+git rebase --onto past master mybranch
