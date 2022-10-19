@@ -86,5 +86,10 @@ adb -a nodaemon server start
 # Apply patch from specific commit
 git format-patch -1 --stdout <commit> | git apply -
 
+# Workflow with `git am`
+# add -N for no numbered, add -o for output directory, add --zero-commit for reproducibility
+git format-patch <starting ref>
+git am *.patch
+
 # Rebase backwards in history
 git rebase --onto past master mybranch
