@@ -2,7 +2,7 @@
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
 
-if [ "$branch" = "master" -o "$branch" = "develop" ] ; then
+if [ "$branch" = "main" -o "$branch" = "master" -o "$branch" = "develop" ] ; then
     echo Prevented commiting to branch $branch!
     exit 1
 fi
