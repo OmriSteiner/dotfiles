@@ -21,10 +21,13 @@ set scrolloff=5         " Scroll before you reach the end of the screen.
 set directory=~/.vim/swapfiles// " Change the directory for swapfiles
 syntax on               " Enable syntax highlighting (this is off by default in macOS)
 highlight ColorColumn ctermbg=darkgrey
+set ruler               " Show the cursor position (line, column)
 highlight TabLineFill ctermfg=black
 highlight TabLine ctermfg=white ctermbg=black
 highlight TabLineSel ctermfg=black ctermbg=white
 
+" set filetypes as typescriptreact
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 " Bindings
 let mapleader = ","
@@ -36,6 +39,9 @@ let mapleader = ","
 :noremap <Home> ^
 :map <C-b> :NERDTreeToggle<CR>
 :map <leader>h :CocCommand clangd.switchSourceHeader<CR>
+command Run CocCommand rust-analyzer.run
+:nmap <leader>a :CocCommand<CR>
+:vmap <leader>a :CocCommand<CR>
 
 :map <ESC>Od <C-Left>
 :map <ESC>Oc <C-Right>
@@ -58,6 +64,8 @@ Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'neoclide/coc.nvim'
 Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'github/copilot.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -90,6 +98,11 @@ let g:airline_section_z = ''
 let g:airline_section_error = ''
 let g:airline_section_warning = ''
 
+" Copilot
+imap <silent><script><expr> <leader>f copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+
 " coc
 let g:coc_disable_startup_warning = 1
 
@@ -112,13 +125,6 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -138,7 +144,14 @@ highlight CocHighlightText ctermbg=darkgreen
 nmap <leader>rn <Plug>(coc-rename)
 
 " Auto-fixes
-nmap <leader>f  <Plug>(coc-codeaction-selected)
+nmap <leader>f  <Plug>(coc-codeaction-selected)<CR>
+
+" :Format command
+command! -nargs=0 Format :call CocActionAsync('format')
+nmap <leader>w :Format<CR>:w<CR>
 
 " fzf
-nmap <C-P> :FZF<CR>
+nmap <C-P> :GFiles<CR>
+noremap <C-F> :Rg
+let $FZF_DEFAULT_OPTS="--preview-window 'right:57%' --preview 'bat --style=numbers --line-range :300 {}'
+    \ --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"

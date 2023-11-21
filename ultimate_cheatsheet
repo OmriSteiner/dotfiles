@@ -57,6 +57,15 @@ scp -o ProxyJump=inz@192.168.10.44 src user@172.30.110.3:dst
 use dp/do to send/receive from other side
 use ]c [c to go to next/prev diff
 
+# Create an empty buffer in the current window
+:enew
+
+# Start a diff in the current buffer
+:diffthis
+
+# Stop diff
+:diffoff
+
 ############## PEP8 ##############
 # PEP8 for math (i.e, only the good stuff, but doesn't enforce whitespace around operators).
 autopep8 -i --select E231,E203,E202,E303,E302,E251,W293,W291,E201,E128,E117,E126,E222,E221 <file.py>
@@ -93,3 +102,18 @@ git am *.patch
 
 # Rebase backwards in history
 git rebase --onto past master mybranch
+
+############### AWS ###############
+### CloudFormation
+# Create stack
+aws cloudformation create-stack --stack-name <stack-name> --template-body file://<template-file>
+
+############# Kubectl #############
+# change context
+kubectl config use-context <context>
+
+# set namespace for current context
+kubectl config set-context --namespace <namespace> --current
+
+# run a one-off container
+kubectl run -it --rm --restart=Never --image <image> <name> -- <entrypoint>
