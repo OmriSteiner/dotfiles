@@ -13,3 +13,5 @@
 	autoSetupRemote = true
 [branch]
 	autoSetupMerge = always
+[alias]
+	ra = rebase -i --autosquash --autostash
