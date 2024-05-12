@@ -3,6 +3,8 @@
 echo "core.%e.%p" | sudo tee /proc/sys/kernel/core_pattern
 ulimit -c unlimited
 
+# Add user to sudoers
+sudo adduser <username> sudo
 
 ############## GDB ############## 
 ### Sharedlibraries
@@ -37,6 +39,12 @@ set disassembly-flavor intel
 sudo groupadd docker
 sudo usermod -aG docker $USER
 # need to logout and login after this
+
+# Login to ECR registry
+# Public registry
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+# Private registry
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <accountid>.dkr.ecr.<region>.amazonaws.com
 
 ############### SSH ###############
 # Tunnel:
