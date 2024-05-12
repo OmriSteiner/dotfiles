@@ -33,7 +33,7 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 let mapleader = ","
 :nnoremap <C-j> <C-e>
 :nnoremap <C-k> <C-y>
-:nmap <F2> :TagbarToggle<CR>
+:nmap <F2> :CocOutline<CR>
 :nmap <F3> zf%
 :nmap <F6> :setlocal spell!<CR>
 :noremap <Home> ^
@@ -42,6 +42,7 @@ let mapleader = ","
 command Run CocCommand rust-analyzer.run
 :nmap <leader>a :CocCommand<CR>
 :vmap <leader>a :CocCommand<CR>
+:nmap <leader>d :CocDiag<CR>
 
 :map <ESC>Od <C-Left>
 :map <ESC>Oc <C-Right>
@@ -58,7 +59,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline'
 Plugin 'grailbio/bazel-compilation-database'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'tommcdo/vim-exchange'
@@ -66,6 +67,8 @@ Plugin 'neoclide/coc.nvim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'github/copilot.vim'
+Plugin 'antoinemadec/coc-fzf'
+Plugin 'knsh14/vim-github-link'
 
 call vundle#end()
 filetype plugin indent on
@@ -152,6 +155,10 @@ nmap <leader>w :Format<CR>:w<CR>
 
 " fzf
 nmap <C-P> :GFiles<CR>
-noremap <C-F> :Rg
+noremap <C-F> :Rg 
 let $FZF_DEFAULT_OPTS="--preview-window 'right:57%' --preview 'bat --style=numbers --line-range :300 {}'
     \ --bind ctrl-y:preview-up,ctrl-e:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
+
+" Fix indentation for yaml files
+autocmd FileType yaml set indentkeys-=0#
+
