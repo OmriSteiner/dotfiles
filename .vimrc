@@ -165,3 +165,5 @@ let $FZF_DEFAULT_OPTS="--preview-window 'right:57%' --preview 'bat --style=numbe
 autocmd FileType yaml set indentkeys-=0#
 
 colorscheme citruszest
+
+vmap <leader>y "+y
