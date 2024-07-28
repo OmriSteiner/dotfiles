@@ -19,6 +19,7 @@ set updatetime=300      " How often will the swap file be written to disk, ALSO 
 set colorcolumn=80      " color the 80th column, as a ruler.
 set scrolloff=5         " Scroll before you reach the end of the screen.
 set directory=~/.vim/swapfiles// " Change the directory for swapfiles
+set mouse=              " Disable mouse support. This is enabled by default in new versions of nvim
 syntax on               " Enable syntax highlighting (this is off by default in macOS)
 highlight ColorColumn ctermbg=darkgrey
 set ruler               " Show the cursor position (line, column)
