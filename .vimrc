@@ -70,6 +70,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'github/copilot.vim'
 Plugin 'antoinemadec/coc-fzf'
 Plugin 'knsh14/vim-github-link'
+Plugin 'zootedb0t/citruszest.nvim'
 
 call vundle#end()
 filetype plugin indent on
@@ -163,3 +164,4 @@ let $FZF_DEFAULT_OPTS="--preview-window 'right:57%' --preview 'bat --style=numbe
 " Fix indentation for yaml files
 autocmd FileType yaml set indentkeys-=0#
 
+colorscheme citruszest
