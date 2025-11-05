@@ -149,7 +149,7 @@ highlight CocHighlightText ctermbg=darkgreen
 nmap <leader>rn <Plug>(coc-rename)
 
 " Auto-fixes
-nmap <leader>f  <Plug>(coc-codeaction-selected)<CR>
+nmap <silent> <leader>f <Plug>(coc-codeaction-selected)<CR>
 
 " :Format command
 command! -nargs=0 Format :call CocActionAsync('format')
