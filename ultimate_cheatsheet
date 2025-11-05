@@ -125,3 +125,8 @@ kubectl config set-context --namespace <namespace> --current
 
 # run a one-off container
 kubectl run -it --rm --restart=Never --image <image> <name> -- <entrypoint>
+
+# ArgoCD password:
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+# ArgoCD port-forward:
+kubectl port-forward  -n argocd svc/argo-cd-argocd-server 8080:443
